@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row align-items-start" style="height:200px">
+    <h1 style="align-self: center"></h1>
+  </div>
+  <div class="row align-items-center">
+    <div class="col">
+    </div>
+    <div class="col-6">
+        <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Import File</mat-card-title>
+              <mat-card-subtitle>Store data with price, discount and size informations</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="assets/upload.png" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                          <input type="file" id="file" (change)="setFileInput($event.target.files)" [attr.disabled]="buttonDisabled ? '' : null">
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="container">
+                        <div class="row">
+                            <div class="col">
+                              {{ state }}  {{ (percentage > 0) ? '- %' + percentage : ''}}
+                            </div>
+                            <div class="col">
+                              <a *ngIf="state == 'Completed'"  [routerLink]="['/view', session]" >View Data</a>
+                            </div>  
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="state != '' " class="row">
+                      <mat-progress-bar class="example-margin" mode="determinate" [value]="percentage" bufferValue="100">
+                      </mat-progress-bar>
+                    </div>
+                    <div *ngIf=" description != null && description != '' " class="row">
+                      Error Cause: {{ description }}
+                    </div>
+                  </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button (click)="uploadFile()" class="btn btn-primary" [attr.disabled]="buttonDisabled ? '' : null"> Upload</button>
+            </mat-card-actions>
+          </mat-card>   
+    </div>
+    <div class="col">
+    </div>
+  </div>
+  <div class="row align-items-end">
+  </div>
+</div>
